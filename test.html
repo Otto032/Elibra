@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rate My Book</title>
+    <style>
+        .stars {
+            display: flex;
+            cursor: pointer;
+        }
+
+        .star {
+            font-size: 30px;
+            color: gray;
+        }
+
+        .star.selected {
+            color: gold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Rate My Book</h2>
+    <div class="stars" id="stars">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+    </div>
+    <p id="result"></p>
+
+    <script>
+        const stars = document.querySelectorAll(".star");
+        const result = document.getElementById("result");
+        stars.forEach((star, index) => {
+            star.addEventListener("click", () => {
+                stars.forEach((s, i) => {
+                    s.classList.toggle("selected", i <= index);
+                });
+                result.textContent = `You rated: ${index + 1} stars`;
+                // send to server here
+            });
+        });
+    </script>
+</body>
+
+</html>
